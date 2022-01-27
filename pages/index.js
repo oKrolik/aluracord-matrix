@@ -1,6 +1,6 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React from 'react';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import appConfig from '../config.json';
 
 function Titulo(props) {
@@ -46,7 +46,7 @@ export default function PaginaInicial() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     // backgroundColor: appConfig.theme.colors.primary[500],
                     backgroundImage: 'url(https://images4.alphacoders.com/587/587508.png)',
-                    backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
+                    backgroundRepeat: 'no-repeat', backgroundSize: 'cover',
                 }}
             >
                 <Box
@@ -58,10 +58,11 @@ export default function PaginaInicial() {
                             xs: 'column',
                             sm: 'row',
                         },
-                        width: '100%', maxWidth: '700px',
-                        borderRadius: '5px', padding: '32px', margin: '16px',
+                        width: '85%', maxWidth: '700px',
+                        borderRadius: '4px', padding: '32px', margin: '16px',
                         boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-                        backgroundColor: appConfig.theme.colors.neutrals[700],
+                        // backgroundColor: appConfig.theme.colors.neutrals[700], opacity: '80%',
+                        backgroundColor: 'rgba(33,41,49,0.6)',
                     }}
                 >
                     {/* Formulário */}
@@ -75,7 +76,7 @@ export default function PaginaInicial() {
                         }}
                         styleSheet={{
                             display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                            width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px', 
+                            width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
                         }}
                     >
                         <Titulo tag="h2">Boas vindas de volta!</Titulo>
@@ -83,7 +84,7 @@ export default function PaginaInicial() {
                             {appConfig.name}
                         </Text>
 
-                        <input 
+                        {/* <input 
                             type="text"
                             value={username}
                             onChange={function (event) {
@@ -94,7 +95,7 @@ export default function PaginaInicial() {
                                 // através do React
                                 setUsername(valor);
                             }}
-                        />
+                        /> */}
                         {/* <TextField
                             fullWidth
                             textFieldColors={{
@@ -106,6 +107,25 @@ export default function PaginaInicial() {
                                 },
                             }}
                         /> */}
+                        <TextField
+                            fullWidth
+                            value={username} // Valor da variavel
+                            onChange={
+                                function handler(event) { // Uma função de handler, que pega o que o usuário fez
+                                    const valor = event.target.value; // Define uma variavel para armazenar o dado. O dado é, o valor do que foi alvo do evento. (no caso o clique na tecla)
+                                    setUsername(valor); // Seta um novo valor para a Username
+
+                                }
+                            }
+                            textFieldColors={{
+                                neutral: {
+                                    textColor: appConfig.theme.colors.neutrals[200],
+                                    mainColor: appConfig.theme.colors.neutrals[900],
+                                    mainColorHighlight: appConfig.theme.colors.primary[500],
+                                    backgroundColor: appConfig.theme.colors.neutrals[800],
+                                },
+                            }}
+                        />
                         <Button
                             type='submit'
                             label='Entrar'
@@ -129,10 +149,11 @@ export default function PaginaInicial() {
                             alignItems: 'center',
                             maxWidth: '200px',
                             padding: '16px',
-                            backgroundColor: appConfig.theme.colors.neutrals[800],
-                            border: '1px solid',
-                            borderColor: appConfig.theme.colors.neutrals[999],
-                            borderRadius: '10px',
+                            backgroundColor: appConfig.theme.colors.neutrals[900],
+                            border: 'none',
+                            // borderColor: appConfig.theme.colors.neutrals[999],
+                            borderRadius: '4px',
+                            boxShadow: 'rgba(0 0 0 / 0.911) 10px 10px 10px',
                             flex: 1,
                             minHeight: '240px',
                         }}
@@ -147,10 +168,11 @@ export default function PaginaInicial() {
                         <Text
                             variant="body4"
                             styleSheet={{
-                                color: appConfig.theme.colors.neutrals[200],
-                                backgroundColor: appConfig.theme.colors.neutrals[900],
+                                color: appConfig.theme.colors.neutrals[100],
+                                backgroundColor: '#3c4c5c',
                                 padding: '3px 10px',
-                                borderRadius: '1000px'
+                                borderRadius: '100px',
+                                borderColor: 'rgb(0 0 0)'
                             }}
                         >
                             {username}
