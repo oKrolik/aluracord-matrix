@@ -70,7 +70,8 @@ export default function ChatPage() {
                         display: 'flex',
                         flex: 1,
                         height: '80%',
-                        backgroundColor: appConfig.theme.colors.neutrals[600],
+                        // backgroundColor: appConfig.theme.colors.neutrals[600],
+                        backgroundColor: 'rgba(41,51,61,0.8)',
                         flexDirection: 'column',
                         borderRadius: '4px',
                         padding: '4px',
@@ -121,7 +122,7 @@ export default function ChatPage() {
                             onClick={(event) => {
                                 handleNovaMensagem(mensagem);
                             }}
-                            iconName="FaArrowRight"
+                            iconName="FaArrowRight" //FaArrowRight //FaAngleRight
                             colorVariant="dark"
                             type="submit"
                             buttonColors={{
@@ -132,7 +133,7 @@ export default function ChatPage() {
                             }}
                             styleSheet={{
                                 border: '0',
-                                marginLeft: '10px',
+                                marginLeft: '8px',
                                 marginBottom: '4px',
                                 resize: 'none',
                                 padding: '6px 8px 8px 8px',
@@ -219,7 +220,7 @@ function MessageList(props) {
                                     marginRight: '8px',
                                 }}
                                 // src={`https://github.com/oKrolik.png`}
-                                src={`https://github.com/${username}.png`}
+                                src={username.length > 2 ? `https://github.com/${username}.png` : `https://i.pinimg.com/564x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg`}
                                 // src={`${srcImage(mensagem.de)}`}
                             />
                             <Icon

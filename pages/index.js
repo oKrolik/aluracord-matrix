@@ -35,7 +35,7 @@ function Titulo(props) {
 
 export default function PaginaInicial() {
     // const username = 'oKrolik';
-    const [username, setUsername] = React.useState('oKrolik');
+    const [username, setUsername] = React.useState('');
     const roteamento = useRouter();
     //const { username } = roteamento.query;
 
@@ -58,11 +58,12 @@ export default function PaginaInicial() {
                             xs: 'column',
                             sm: 'row',
                         },
-                        width: '85%', maxWidth: '700px',
+                        width: '100%', maxWidth: '700px',
                         borderRadius: '4px', padding: '32px', margin: '16px',
-                        boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-                        // backgroundColor: appConfig.theme.colors.neutrals[700], opacity: '80%',
-                        backgroundColor: 'rgba(33,41,49,0.6)',
+                        boxShadow: '0 7px 10px 0 rgb(0 0 0 / 90%)',
+                        // backgroundColor: appConfig.theme.colors.neutrals[700],
+                        // opacity: 0.9,
+                        backgroundColor: 'rgba(33,41,49,0.9)',
                     }}
                 >
                     {/* Formulário */}
@@ -149,11 +150,11 @@ export default function PaginaInicial() {
                             alignItems: 'center',
                             maxWidth: '200px',
                             padding: '16px',
-                            backgroundColor: appConfig.theme.colors.neutrals[900],
-                            border: 'none',
-                            // borderColor: appConfig.theme.colors.neutrals[999],
-                            borderRadius: '4px',
-                            boxShadow: 'rgba(0 0 0 / 0.911) 10px 10px 10px',
+                            backgroundColor: appConfig.theme.colors.neutrals[800], //900
+                            border: '1px solid', //none
+                            borderColor: appConfig.theme.colors.neutrals[999],
+                            borderRadius: '4px', //10px
+                            // boxShadow: 'rgba(0 0 0 / 0.911) 10px 10px 10px',
                             flex: 1,
                             minHeight: '240px',
                         }}
@@ -168,11 +169,13 @@ export default function PaginaInicial() {
                         <Text
                             variant="body4"
                             styleSheet={{
-                                color: appConfig.theme.colors.neutrals[100],
-                                backgroundColor: '#3c4c5c',
+                                // color: appConfig.theme.colors.neutrals[100],
+                                // backgroundColor: '#3c4c5c',
+                                color: appConfig.theme.colors.neutrals[200],
+                                backgroundColor: appConfig.theme.colors.neutrals[900],
                                 padding: '3px 10px',
-                                borderRadius: '100px',
-                                borderColor: 'rgb(0 0 0)'
+                                borderRadius: '1000px',//100px
+                                // borderColor: 'rgb(0 0 0)'
                             }}
                         >
                             {username}
