@@ -1,14 +1,16 @@
 import { Box, Text, TextField, Image, Button, Icon } from '@skynexui/components';
 import React from 'react';
 import appConfig from '../config.json';
+import { useRouter } from 'next/router';
 // import username from '../pages/index';
 // import { srcImage } from './index';
 
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
-
-    const username = 'oKrolik';
+    const roteamento = useRouter();
+    const { username } = roteamento.query;
+    // const username = 'oKrolik';
 
     /*
     // Usuário
@@ -187,6 +189,8 @@ function MessageList(props) {
             }}
         >
             {props.mensagens.map((mensagem) => {
+                const roteamento = useRouter();
+                const { username } = roteamento.query;
                 return (
                     <Text
                         key={mensagem.id}
@@ -214,8 +218,8 @@ function MessageList(props) {
                                     display: 'inline-block',
                                     marginRight: '8px',
                                 }}
-                                src={`https://github.com/oKrolik.png`}
-                                // src={`https://github.com/${username}.png`}
+                                // src={`https://github.com/oKrolik.png`}
+                                src={`https://github.com/${username}.png`}
                                 // src={`${srcImage(mensagem.de)}`}
                             />
                             <Icon
