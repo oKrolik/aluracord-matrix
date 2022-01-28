@@ -45,7 +45,7 @@ export default function ChatPage() {
                 // backgroundColor: appConfig.theme.colors.primary[500],
                 backgroundImage: 'url(https://images4.alphacoders.com/587/587508.png)',
                 backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
-                color: appConfig.theme.colors.neutrals['000']
+                color: appConfig.theme.colors.neutrals['000'], backgroundPosition: 'center',
             }}
         >
             <Box
