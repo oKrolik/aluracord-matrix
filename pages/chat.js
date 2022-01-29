@@ -2,8 +2,16 @@ import { Box, Text, TextField, Image, Button, Icon } from '@skynexui/components'
 import React from 'react';
 import appConfig from '../config.json';
 import { useRouter } from 'next/router';
+import { createClient } from '@supabase/supabase-js';
 // import username from '../pages/index';
 // import { srcImage } from './index';
+
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzM5Njc3NSwiZXhwIjoxOTU4OTcyNzc1fQ.x-jXawXP017VoD8lZeQ7bFZJSLuPf1-BI5ksNbQ6s6Y';
+const SUPABASE_URL = 'https://ogmfcfmngvizebxeoele.supabase.co';
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+
+
 
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
@@ -12,29 +20,40 @@ export default function ChatPage() {
     const { username } = roteamento.query;
     // const username = 'oKrolik';
 
-    /*
-    // Usuário
-    - Usuário digita no campo textarea
-    - Aperta enter para enviar
-    - Tem que adicionar o texto na listagem
+    React.useEffect(() => {
+        supabaseClient
+            .from('mensagens')
+            .select('*')
+            .order('id', { ascending: false })
+            .then(({ data }) => {
+                console.log('Dados da consulta:', data);
+                setListaDeMensagens(data);
+            });
+    }, []);
     
-    // Dev
-    - [X] Campo criado
-    - [X] Vamos usar o onChange usa o useState (ter if pra caso seja enter pra limpar a variavel)
-    - [X] Lista de mensagens 
-    */
+
     function handleNovaMensagem(novaMensagem) {
         if (!novaMensagem?.length) { return; };
         const mensagem = {
-            id: listaDeMensagens.length + 1,
+            // id: listaDeMensagens.length + 1,
             de: username,
             texto: novaMensagem,
         };
 
-        setListaDeMensagens([
-            mensagem,
-            ...listaDeMensagens,
-        ]);
+        supabaseClient
+            .from('mensagens')
+            .insert([
+                mensagem
+            ])
+            .then(({ data }) => {
+                console.log('Criando mensagem: ', data);
+                setListaDeMensagens([
+                     data[0],
+                    ...listaDeMensagens,
+                 ]);
+            });
+
+        
         setMensagem('');
     }
 
@@ -220,7 +239,7 @@ function MessageList(props) {
                                     marginRight: '8px',
                                 }}
                                 // src={`https://github.com/oKrolik.png`}
-                                src={username.length > 2 ? `https://github.com/${username}.png` : `https://i.pinimg.com/564x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg`}
+                                src={username.length > 2 ? `https://github.com/${mensagem.de}.png` : `https://i.pinimg.com/564x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg`}
                                 // src={`${srcImage(mensagem.de)}`}
                             />
                             <Icon
