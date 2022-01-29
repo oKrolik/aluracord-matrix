@@ -131,6 +131,7 @@ export default function PaginaInicial() {
                             type='submit'
                             label='Entrar'
                             fullWidth
+                            disabled={!username?.length}
                             buttonColors={{
                                 contrastColor: appConfig.theme.colors.neutrals["000"],
                                 mainColor: appConfig.theme.colors.primary[500],
