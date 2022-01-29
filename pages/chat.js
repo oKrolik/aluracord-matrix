@@ -56,7 +56,7 @@ export default function ChatPage() {
         
         setMensagem('');
     }
-
+    
     return (
         <Box
             styleSheet={{
@@ -188,12 +188,32 @@ function Header() {
 }
 
 function MessageList(props) {
+    const [mensagem, setMensagem] = React.useState('');
+    const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
+    const roteamento = useRouter();
+    const { username } = roteamento.query;
+    
     console.log(props);
-
+    function handleDeleteMensagem(novaMensagem) {
+        const mensagem = {
+            // id: listaDeMensagens.length + 1,
+            de: username,
+            texto: novaMensagem,
+        };
+        supabaseClient
+            .from('mensagens')
+            .delete()
+            .match({ id: novaMensagem })
+            .then(({ data }) => {
+                console.log('Apagando mensagem: ', data);
+                setListaDeMensagens(listaDeMensagens.filter(function (data) {
+                    return !data.delete
+                }));
+            })
+    }
     function deleteMensagemComId(idMensagem) {
         const novaListaMsg = props.mensagens.filter((mensagem) => mensagem.id != idMensagem);
         props.atualizaListaMsgs(novaListaMsg);
-
     }
 
     return (
@@ -246,6 +266,7 @@ function MessageList(props) {
                                 onClick={() => {
                                     console.log('clicou: ', mensagem);
                                     deleteMensagemComId(mensagem.id);
+                                    handleDeleteMensagem(mensagem.id);
                                 }}
                                 label="Icon Component"
                                 name="FaTrash"
