@@ -152,6 +152,7 @@ export default function ChatPage() {
                                 if (event.key === 'Enter') {
                                     event.preventDefault();
                                     handleNovaMensagem(mensagem);
+
                                 }
                             }}
                             placeholder="Insira sua mensagem aqui..."
@@ -330,30 +331,39 @@ function MessageList(props) {
                                 }}
                                 tag="span"
                             >
-                                {(new Date().toLocaleDateString())}
+                                {/* {(new Date().toLocaleDateString())} */}
+                                {new Date(mensagem.created_at).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' })}
                             </Text>
                         </Box>
-                        {/* {mensagem.texto} */}
-                        {/* [Declarativo] */}
-                        {/* Condicional: {mensagem.texto.startsWith(':sticker:').toString()} */}
-                        {mensagem.texto.startsWith(':sticker:')
-                            ? (
-                                <Image src={mensagem.texto.replace(':sticker:', '')} 
-                                    styleSheet={{
-                                        width: '150px',
-                                        height: '100px',
-                                    }}
-                                />
-                                
-                            )
-                            : (
-                                mensagem.texto
-                            )}
-                        {/* if mensagem de texto possui stickers:
+                        <Text
+                            styleSheet={{
+                                fontSize: '14px',
+                                wordBreak: 'break-word'
+                            }}
+                        >
+                            {/* {mensagem.texto} */}
+                            {/* [Declarativo] */}
+                            {/* Condicional: {mensagem.texto.startsWith(':sticker:').toString()} */}
+                            {mensagem.texto.startsWith(':sticker:')
+                                ? (
+                                    <Image src={mensagem.texto.replace(':sticker:', '')}
+                                        styleSheet={{
+                                            width: '150px',
+                                            height: '100px',
+                                        }}
+                                    />
+
+                                )
+                                : (
+                                    mensagem.texto
+                                )}
+                            {/* if mensagem de texto possui stickers:
                            mostra a imagem
                         else 
                            mensagem.texto */}
-                        {/* {mensagem.texto} */}
+                            {/* {mensagem.texto} */}
+                        </Text>
+
                     </Text>
                 );
             })}
