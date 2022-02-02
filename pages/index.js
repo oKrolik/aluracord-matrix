@@ -168,6 +168,9 @@ export default function PaginaInicial() {
                             src={username.length > 2 ? `https://github.com/${username}.png` : `https://i.pinimg.com/564x/cb/45/72/cb4572f19ab7505d552206ed5dfb3739.jpg`}
                         />
                         <Text
+                            tag="a"
+                            href={`https://github.com/${username}`}
+                            target="_blank"
                             variant="body4"
                             styleSheet={{
                                 // color: appConfig.theme.colors.neutrals[100],
@@ -177,6 +180,9 @@ export default function PaginaInicial() {
                                 padding: '3px 10px',
                                 borderRadius: '1000px',//100px
                                 // borderColor: 'rgb(0 0 0)'
+                                hover: {
+                                    color: appConfig.theme.colors.primary[500]
+                                }
                             }}
                         >
                             {username}
